@@ -1,11 +1,11 @@
 FROM debian:buster
 
 LABEL org.label-schema.description="Useful network related tools" \
-      org.label-schema.version=1.0.0
+      org.label-schema.version=1.0.1
 
 ENV   RG_VERSION=12.1.1 \
-      FD_VERSION=8.1.1 \
-      YQ_VERSION=3.3.2 \
+      FD_VERSION=8.2.1 \
+      YQ_VERSION=v4.4.1 \
       DEBIAN_FRONTEND=noninteractive \
       TZ=Asia/Shanghai \
       LANG=en_US.utf8
@@ -23,7 +23,7 @@ RUN set -eux; \
       localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \
       ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata; \
       curl -fksSL https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl.tar.gz | tar --extract --gunzip --strip-components=1 --verbose --directory /usr/local/bin/ ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl/rg; \
-      curl -fksSL -o /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 && chmod +x /usr/local/bin/yq; \
+      curl -fksSL https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64.tar.gz | tar --extract --gunzip --verbose --directory /usr/local/bin/ --transform "s/yq_linux_amd64/yq/" && chmod +x /usr/local/bin/yq; \      
       curl -fksSL https://github.com/sharkdp/fd/releases/download/v${FD_VERSION}/fd-v${FD_VERSION}-x86_64-unknown-linux-gnu.tar.gz | tar --extract --gunzip --strip-components=1 --verbose --directory /usr/local/bin/ fd-v${FD_VERSION}-x86_64-unknown-linux-gnu/fd; \
       apt-get clean && apt install --no-install-recommends -yq \
       fping \
@@ -74,6 +74,9 @@ RUN set -eux; \
       p11-kit \
       fzf \
       telnet \
+      iputils-arping \
+      ipcalc \
+      zmap \
       && apt-get clean && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT []
 
