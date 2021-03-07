@@ -10,12 +10,13 @@ ENV   RG_VERSION=12.1.1 \
       TZ=Asia/Shanghai \
       LANG=en_US.utf8
 
-RUN set -eux; \
+RUN   set -eux; \
       apt-get clean && \
       apt-get update && \
       apt-get -y upgrade && \
       apt-get install --no-install-recommends -yq \
       locales \
+      ca-certificates \
       curl; \
       localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \
       ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata; \
@@ -64,7 +65,6 @@ RUN set -eux; \
       unzip \
       bzip2 \
       xz-utils \
-      ca-certificates \
       openssh-client \
       git \
       gnupg2 \
