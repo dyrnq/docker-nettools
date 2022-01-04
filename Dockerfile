@@ -1,11 +1,11 @@
 FROM debian:buster
 
 LABEL org.label-schema.description="Useful network related tools" \
-      org.label-schema.version=1.0.2
+      org.label-schema.version=1.0.3
 
-ENV   RG_VERSION=12.1.1 \
-      FD_VERSION=8.2.1 \
-      YQ_VERSION=v4.6.1 \
+ENV   RG_VERSION=13.0.0 \
+      FD_VERSION=8.3.0 \
+      YQ_VERSION=v4.16.2 \
       DEBIAN_FRONTEND=noninteractive \
       TZ=Asia/Shanghai \
       LANG=en_US.utf8
@@ -74,6 +74,7 @@ RUN   set -eux; \
       iputils-arping \
       ipcalc \
       zmap \
+      libnss3-tools \
       && apt-get clean && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT []
 
