@@ -4,8 +4,8 @@ LABEL org.label-schema.description="Useful network related tools" \
       org.label-schema.version=1.0.3
 
 ENV   RG_VERSION=13.0.0 \
-      FD_VERSION=8.3.0 \
-      YQ_VERSION=v4.16.2 \
+      FD_VERSION=8.5.3 \
+      YQ_VERSION=v4.30.4 \
       DEBIAN_FRONTEND=noninteractive \
       TZ=Asia/Shanghai \
       LANG=en_US.utf8
@@ -65,7 +65,7 @@ RUN   set -eux; \
       unzip \
       bzip2 \
       xz-utils \
-      openssh-client \
+      tcpreplay \
       git \
       gnupg2 \
       p11-kit \
@@ -75,6 +75,8 @@ RUN   set -eux; \
       ipcalc \
       zmap \
       libnss3-tools \
+      iptraf-ng \
+      bwm-ng \
       && apt-get clean && rm -rf /var/lib/apt/lists/*
 ENTRYPOINT []
 
