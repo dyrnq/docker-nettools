@@ -42,7 +42,7 @@ esac; \
       apt-get clean && apt install --no-install-recommends -yq \
       fping \
       wget \
-      netcat \
+      netcat-openbsd \
       nmap \
       jq \
       dnsutils \
