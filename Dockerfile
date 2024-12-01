@@ -2,9 +2,9 @@ FROM debian:bookworm
 
 LABEL org.label-schema.description="Useful network related tools"
 
-ENV   RG_VERSION=14.1.0 \
-      FD_VERSION=10.1.0 \
-      YQ_VERSION=v4.44.2 \
+ENV   RG_VERSION=14.1.1 \
+      FD_VERSION=10.2.0 \
+      YQ_VERSION=v4.44.5 \
       DEBIAN_FRONTEND=noninteractive \
       TZ=Asia/Shanghai \
       LANG=en_US.utf8
